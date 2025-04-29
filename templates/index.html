@@ -1,23 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Input og Liste</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 </head>
+
 <body>
     <h1>to do list</h1>
     <form method="POST">
         <input type="text" name="text_input" placeholder="Skriv noe..." required>
+        <select name="category" required>
+            <option value="" disabled hidden selected>Velg Liste...</option>
+            {% for list in lists %}
+            <option value="{{ list.name }}">{{ list.name }}</option>
+            {% endfor %}
+        </select>
+        <style>
+            select:required:invalid {
+                color: #a9a9a9;
+            }
+
+            option:not(:checked) {
+                color: #fff;
+            }
+        </style>
         <button type="submit">Legg til</button>
     </form>
 
-    <h2>Liste over input:</h2>
+    <h2>Lister</h2>
+    {% for list in lists %}
+    <h3>{{ list.name }}</h3>
     <ul>
         {% for text in text_list %}
-            <li>{{ text }}</li>
+        {% if text.list_id == list.id %}
+        <li>{{ text.title }}</li>
+        {% endif %}
         {% endfor %}
     </ul>
+    {% endfor %}
 </body>
+
 </html>
