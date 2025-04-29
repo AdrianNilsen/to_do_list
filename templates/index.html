@@ -12,10 +12,10 @@
     <h1>to do list</h1>
     <form method="POST">
         <input type="text" name="text_input" placeholder="Skriv noe..." required>
-        <select name="category" required>
+        <select name="list" required>
             <option value="" disabled hidden selected>Velg Liste...</option>
             {% for list in lists %}
-            <option value="{{ list.name }}">{{ list.name }}</option>
+            <option value="{{ list.id }}">{{ list.name }}</option>
             {% endfor %}
         </select>
         <style>

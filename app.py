@@ -21,11 +21,13 @@ def index():
     if request.method == "POST":
         # Get text from the input field
         text = request.form.get("text_input")
+        list_id = request.form.get("list")
+
         if text:
             # Insert the text into the database
             connection = get_db_connection()
             with connection.cursor() as cursor:
-                cursor.execute("INSERT INTO tasks (title) VALUES (%s)", (text,))
+                cursor.execute("INSERT INTO tasks (title, list_id) VALUES (%s, %s)", (text, list_id))
             connection.commit()
             connection.close()
 
