@@ -20,10 +20,10 @@ CREATE TABLE tasks (
     foreign key (list_id) references lists(id)
 );
 
-insert into lists (name) values ('Work'), ('Personal'), ('Shopping'), ('Fitness'), ('Hobbies');
+insert into lists (name) values ('Arbeid'), ('Personlig'), ('Handleliste'), ('Trening'), ('Hobbyer');
 insert into tasks (title, description, status, priority, list_id) values 
-('Finish project report', 'Complete the final report for the project.', true, 'high', 1),
-('Buy groceries', 'Milk, eggs, bread, and fruits.', true, 'medium', 3),
-('Gym workout', 'Leg day workout routine.', true, 'high', 4),
-('Read a book', 'Finish reading the current book.', true, 'low', 5),
-('Plan vacation', 'Research destinations and plan itinerary.', true, 'medium', 2);
+('Fullfør prosjekt rapport', 'Fullfør den endelige rapporten for prosjektet.', true, 'high', 1),
+('Kjøp dagligvarer', 'Melk, egg, brød og frukt.', true, 'medium', 3),
+('Treningsøkt', 'Beindag treningsrutine.', true, 'high', 4),
+('Les en bok', 'Fullfør å lese den nåværende boken.', true, 'low', 5),
+('Planlegg ferie', 'Undersøk destinasjoner og planlegg reiserute.', true, 'medium', 2);

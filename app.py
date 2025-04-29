@@ -22,12 +22,13 @@ def index():
         # Get text from the input field
         text = request.form.get("text_input")
         list_id = request.form.get("list")
+        priority = request.form.get("priority")
 
         if text:
             # Insert the text into the database
             connection = get_db_connection()
             with connection.cursor() as cursor:
-                cursor.execute("INSERT INTO tasks (title, list_id) VALUES (%s, %s)", (text, list_id))
+                cursor.execute("INSERT INTO tasks (title, list_id, priority) VALUES (%s, %s, %s)", (text, list_id, priority))
             connection.commit()
             connection.close()
 

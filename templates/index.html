@@ -13,13 +13,19 @@
     <form method="POST">
         <input type="text" name="text_input" placeholder="Skriv noe..." required>
         <select name="list" required>
-            <option value="" disabled hidden selected>Velg Liste...</option>
+            <option value="" disabled hidden selected>Velg liste </option>
             {% for list in lists %}
             <option value="{{ list.id }}">{{ list.name }}</option>
             {% endfor %}
         </select>
+        <select name="priority" required>
+            <option value="" disabled hidden selected>Velg prioritet </option>
+            <option value="low">Lav</option>
+            <option value="medium">Moderat</option>
+            <option value="high">Høy</option>
+        </select>
         <style>
-            select:required:invalid {
+            select:invalid {
                 color: #a9a9a9;
             }
 
