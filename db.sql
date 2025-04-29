@@ -11,5 +11,13 @@ CREATE TABLE tasks (
     description TEXT,
     status boolean DEFAULT true,
     priority ENUM('low', 'medium', 'high') DEFAULT 'medium',
+    list_id INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    foreign key (list_id) references lists(id)
+);
+
+CREATE TABLE lists (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 );
