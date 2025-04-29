@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input og Liste</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+</head>
+<body>
+    <h1>to do list</h1>
+    <form method="POST">
+        <input type="text" name="text_input" placeholder="Skriv noe..." required>
+        <button type="submit">Legg til</button>
+    </form>
+
+    <h2>Liste over input:</h2>
+    <ul>
+        {% for text in text_list %}
+            <li>{{ text }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
