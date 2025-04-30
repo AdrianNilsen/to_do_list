@@ -34,7 +34,8 @@ h3 {
 .high {
     position: relative;
     color: white;
-    padding: 5px;
+    padding: 5px 7px;
+
     border-radius: 5px;
     height: min-content;
     margin: 5px;
@@ -42,12 +43,11 @@ h3 {
 }
 
 .todo {
-
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
     border-bottom: 1px solid #606060;
+    position: relative;
 }
 
 p {
@@ -63,12 +63,16 @@ p {
 }
 
 .delete-button {
+    position: absolute;
+    right: 0;
+    top: 3px;
     background-color: #ff4d4d;
     color: white;
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
+
 }
 
 .delete-button:hover {

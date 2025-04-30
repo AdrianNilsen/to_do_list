@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # Database configuration
 db_config = {
-    'host': '10.2.2.17',
+    'host': 'localhost',
     'user': 'todo_user',
     'password': 'todo_password',  # Use the password you set in db.sql
     'db': 'todo_app',
@@ -68,6 +68,31 @@ def delete_task(task_id):
     connection.commit()
     connection.close()
     return redirect(url_for("index"))
+
+@app.route("/update_status/<int:task_id>", methods=["POST"])
+def update_status(task_id):
+    data = request.get_json()
+    completed = data.get("completed", False)
+    if completed == True:
+        completed = 0
+    elif completed == False:
+        completed = 1
+
+
+    # Update the task status in the database
+    connection = get_db_connection()
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("UPDATE tasks SET status = %s WHERE id = %s", (completed, task_id))
+        connection.commit()
+        print(f"Task {task_id} status updated to {completed}.")
+    except Exception as e:
+        print(f"An error occurred while updating the task status: {e}")
+        connection.rollback()
+    finally:
+        connection.close()
+
+    return '', 204  # Return a no-content response
 
 if __name__ == "__main__":
     app.run(debug=True)
