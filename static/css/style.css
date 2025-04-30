@@ -54,3 +54,9 @@ p {
     margin: 0;
     padding: 0;
 }
+
+.forms {
+    display: flex;
+    flex-direction: row;
+    gap: 15%;
+}

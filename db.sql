@@ -2,7 +2,8 @@
 
 Create Database if not exists todo_app;
 create user todo_user identified by 'todo_password';
-grant all privileges on todo_app.* to todo_user;
+create user 'todo_user'@'%' identified by 'todo_password';
+grant all privileges on todo_app.* to 'todo_user'@'%';
 USE todo_app;
 CREATE TABLE lists (
     id INT PRIMARY KEY auto_increment not null,
