@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # Database configuration
 db_config = {
-    'host': 'localhost',
+    'host': '10.2.2.17',
     'user': 'todo_user',
     'password': 'todo_password',  # Use the password you set in db.sql
     'db': 'todo_app',
