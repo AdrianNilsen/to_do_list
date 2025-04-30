@@ -56,11 +56,13 @@
                     {% if text.priority == "high" %}
                     <div class="{{ text.priority }}">Høy</div>
                     {% elif text.priority == "medium" %}
-                    <div class="{{ text.priority }}"> Medium </div>
+                    <div class="{{ text.priority }}">Medium</div>
                     {% elif text.priority == "low" %}
                     <div class="{{ text.priority }}">Lav</div>
                     {% endif %}
-
+                    <form method="POST" action="{{ url_for('delete_task', task_id=text.id) }}">
+                        <button type="submit" class="delete-button">Slett</button>
+                    </form>
                 </div>
                 {% endif %}
                 {% endfor %}

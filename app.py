@@ -47,5 +47,15 @@ def index():
     # Pass the tasks to the template
     return render_template("index.html", text_list=tasks, lists=lists)
 
+@app.route("/delete/<int:task_id>", methods=["POST"])
+def delete_task(task_id):
+    # Slett oppgaven fra databasen
+    connection = get_db_connection()
+    with connection.cursor() as cursor:
+        cursor.execute("DELETE FROM tasks WHERE id = %s", (task_id,))
+    connection.commit()
+    connection.close()
+    return redirect(url_for("index"))
+
 if __name__ == "__main__":
     app.run(debug=True)
