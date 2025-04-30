@@ -24,6 +24,7 @@ def index():
         list_id = request.form.get("list")
         priority = request.form.get("priority")
 
+
         if text:
             # Insert the text into the database
             connection = get_db_connection()

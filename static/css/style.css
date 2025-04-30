@@ -1,0 +1,56 @@
+.lists {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.list {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #141b23;
+
+}
+
+h3 {
+    margin: 0;
+    font-size: 1.2em;
+    border-radius: 5px 5px 0 0;
+}
+
+.low {
+    background-color: green;
+}
+
+.medium {
+    background-color: orange;
+}
+
+.high {
+    background-color: red;
+}
+
+.low,
+.medium,
+.high {
+    position: relative;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    height: min-content;
+    margin: 5px;
+
+}
+
+.todo {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #606060;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
