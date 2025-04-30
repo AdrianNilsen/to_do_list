@@ -55,13 +55,24 @@
 
         {% for list in lists %}
         <div class="list">
-
             <h3>{{ list.name }}</h3>
             <div>
                 {% for text in text_list %}
                 {% if text.list_id == list.id %}
                 <div class="todo">
-                    <p>{{ text.title }}</p>
+                    {% if text.status == 0 %}
+                    <input type="checkbox" name="completed" value="true" id="{{ text.id }}" checked
+                        onclick="toggleTaskStatus(this)">
+                    <p class="completed" style="text-decoration: line-through;">
+                        {{ text.title }}
+                    </p>
+                    {% else %}
+                    <input type="checkbox" name="completed" value="true" id="{{ text.id }}"
+                        onclick="toggleTaskStatus(this)">
+                    <p>
+                        {{ text.title }}
+                    </p>
+                    {% endif %}
                     {% if text.priority == "high" %}
                     <div class="{{ text.priority }}">Høy</div>
                     {% elif text.priority == "medium" %}
@@ -79,6 +90,7 @@
         </div>
         {% endfor %}
     </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 
 </html>
