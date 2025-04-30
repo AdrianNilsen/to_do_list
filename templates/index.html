@@ -11,34 +11,43 @@
 
 <body>
     <div class="forms">
+        <div>
 
-        <h1>to do</h1>
-        <form method="POST">
-            <input type="text" name="text_input" placeholder="Skriv noe..." required>
-            <select name="list" required>
-                <option value="" disabled hidden selected>Velg liste </option>
-                {% for list in lists %}
-                <option value="{{ list.id }}">{{ list.name }}</option>
-                {% endfor %}
-            </select>
-            <select name="priority" required>
-                <option value="" disabled hidden selected>Velg prioritet </option>
-                <option value="low">Lav</option>
-                <option value="medium">Moderat</option>
-                <option value="high">Høy</option>
-            </select>
-            <style>
-                select:invalid {
-                    color: #a9a9a9;
-                }
+            <h1>Lag ny todo</h1>
+            <form method="POST">
+                <input type="text" name="text_input" placeholder="Skriv noe..." required>
+                <select name="list" required>
+                    <option value="" disabled hidden selected>Velg liste </option>
+                    {% for list in lists %}
+                    <option value="{{ list.id }}">{{ list.name }}</option>
+                    {% endfor %}
+                </select>
+                <select name="priority" required>
+                    <option value="" disabled hidden selected>Velg prioritet </option>
+                    <option value="low">Lav</option>
+                    <option value="medium">Moderat</option>
+                    <option value="high">Høy</option>
+                </select>
+                <style>
+                    select:invalid {
+                        color: #a9a9a9;
+                    }
 
-                option:not(:checked) {
-                    color: #fff;
-                }
-            </style>
-            <button type="submit">Legg til</button>
+                    option:not(:checked) {
+                        color: #fff;
+                    }
+                </style>
+                <button type="submit">Legg til</button>
+            </form>
+        </div>
+        <div>
+
+        </div class="create_list">
+        <form action="/create_list" method="POST">
+            <h1>Lag ny liste</h1>
+            <input type="text" name="list_name" placeholder="Skriv liste navn..." required>
+            <button type="submit">Opprett liste</button>
         </form>
-        <form action=""></form>
     </div>
 
     <h2>Lister</h2>

@@ -47,6 +47,18 @@ def index():
     # Pass the tasks to the template
     return render_template("index.html", text_list=tasks, lists=lists)
 
+@app.route("/create_list", methods=["POST"])
+def create_list():
+    list_name = request.form.get("list_name")
+    if list_name:
+        # Insert the new list into the database
+        connection = get_db_connection()
+        with connection.cursor() as cursor:
+            cursor.execute("INSERT INTO lists (name) VALUES (%s)", (list_name,))
+        connection.commit()
+        connection.close()
+        return redirect(url_for("index"))
+
 @app.route("/delete/<int:task_id>", methods=["POST"])
 def delete_task(task_id):
     # Slett oppgaven fra databasen
