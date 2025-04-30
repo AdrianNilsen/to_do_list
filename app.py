@@ -1,11 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for
 import pymysql
 
+
+
 app = Flask(__name__)
 
 # Database configuration
 db_config = {
-    'host': 'localhost',
+    'host': '10.2.2.17',
     'user': 'todo_user',
     'password': 'todo_password',  # Use the password you set in db.sql
     'db': 'todo_app',
@@ -55,6 +57,16 @@ def create_list():
             cursor.execute("INSERT INTO lists (name) VALUES (%s)", (list_name,))
         connection.commit()
         connection.close()
+        return redirect(url_for("index"))
+
+@app.route("/delete/<int:task_id>", methods=["POST"])
+def delete_task(task_id):
+    # Slett oppgaven fra databasen
+    connection = get_db_connection()
+    with connection.cursor() as cursor:
+        cursor.execute("DELETE FROM tasks WHERE id = %s", (task_id,))
+    connection.commit()
+    connection.close()
     return redirect(url_for("index"))
 
 if __name__ == "__main__":
