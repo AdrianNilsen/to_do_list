@@ -1,23 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Input og Liste</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
-    <h1>to do list</h1>
-    <form method="POST">
-        <input type="text" name="text_input" placeholder="Skriv noe..." required>
-        <button type="submit">Legg til</button>
-    </form>
 
-    <h2>Liste over input:</h2>
-    <ul>
-        {% for text in text_list %}
-            <li>{{ text }}</li>
+<body>
+    <div class="forms">
+
+        <h1>to do</h1>
+        <form method="POST">
+            <input type="text" name="text_input" placeholder="Skriv noe..." required>
+            <select name="list" required>
+                <option value="" disabled hidden selected>Velg liste </option>
+                {% for list in lists %}
+                <option value="{{ list.id }}">{{ list.name }}</option>
+                {% endfor %}
+            </select>
+            <select name="priority" required>
+                <option value="" disabled hidden selected>Velg prioritet </option>
+                <option value="low">Lav</option>
+                <option value="medium">Moderat</option>
+                <option value="high">Høy</option>
+            </select>
+            <style>
+                select:invalid {
+                    color: #a9a9a9;
+                }
+
+                option:not(:checked) {
+                    color: #fff;
+                }
+            </style>
+            <button type="submit">Legg til</button>
+        </form>
+        <form action=""></form>
+    </div>
+
+    <h2>Lister</h2>
+    <div class="lists">
+
+        {% for list in lists %}
+        <div class="list">
+
+            <h3>{{ list.name }}</h3>
+            <div>
+                {% for text in text_list %}
+                {% if text.list_id == list.id %}
+                <div class="todo">
+                    <p>{{ text.title }}</p>
+                    {% if text.priority == "high" %}
+                    <div class="{{ text.priority }}">Høy</div>
+                    {% elif text.priority == "medium" %}
+                    <div class="{{ text.priority }}"> Medium </div>
+                    {% elif text.priority == "low" %}
+                    <div class="{{ text.priority }}">Lav</div>
+                    {% endif %}
+
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
 </body>
+
 </html>
